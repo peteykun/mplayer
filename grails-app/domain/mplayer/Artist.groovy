@@ -1,10 +1,14 @@
 package mplayer
 
 class Artist {
-    String name
+  String name
 
-    static hasMany = [tracks: Track]
+  static hasMany = [tracks: Track]
 
-    static constraints = {
-    }
+  static constraints = {
+  }
+
+  String toString() {
+    "${name}" 
+  } 
 }

@@ -1,13 +1,17 @@
 package mplayer
 
 class Album {
-    String name
+  String name
 
-    byte[] filePayload
+  byte[] filePayload
 
-    static hasMany = [tracks: Track]
+  static hasMany = [tracks: Track]
 
-    static constraints = {
-      filePayload(nullable: true, maxSize: 1073741824) 
-    }
+  static constraints = {
+    filePayload(nullable: true, maxSize: 1073741824) 
+  }
+
+  String toString() {
+    "${name}" 
+  } 
 }

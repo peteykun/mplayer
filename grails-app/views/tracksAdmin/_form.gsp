@@ -1,4 +1,6 @@
 <%@ page import="mplayer.Track" %>
+<%@ page import="mplayer.Album" %>
+<%@ page import="mplayer.Artist" %>
 
 
 
@@ -35,6 +37,24 @@
     
   </label>
   <input type="file" id="filePayload" name="filePayload" />
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: tracksInstance, field: 'album', 'error')} required">
+  <label for="album">
+    <g:message code="track.album.label" default="Album" />
+    <span class="required-indicator">*</span>
+  </label>
+  <g:select id="album" name="album.id" from="${Album.list()}" optionKey="id" required="" value="${trackInstance?.album?.id}" class="many-to-one"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: trackInstance, field: 'artist', 'error')} required">
+  <label for="artist">
+    <g:message code="track.artist.label" default="Artist" />
+    <span class="required-indicator">*</span>
+  </label>
+  <g:select id="artist" name="artist.id" from="${Artist.list()}" optionKey="id" required="" value="${trackInstance?.artist?.id}" class="many-to-one"/>
 
 </div>
 

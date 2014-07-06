@@ -1,15 +1,19 @@
 package mplayer
 
 class Track {
-    String title
-    int track
-    int disc
+  String title
+  int track
+  int disc
+  Artist artist
+  Album album
 
-    byte[] filePayload
+  byte[] filePayload
 
-    static belongsTo = [Artist, Album]
+  static constraints = {
+    filePayload(nullable: true, maxSize: 1073741824) 
+  }
 
-    static constraints = {
-      filePayload(nullable: true, maxSize: 1073741824) 
-    }
+  String toString() {
+    "${title}" 
+  } 
 }
