@@ -23,7 +23,7 @@
 			<table>
 			<thead>
 					<tr>
-					
+					  <g:sortableColumn property="id" title="${message(code: 'album.id.label', default: 'Name')}" />
 						<g:sortableColumn property="name" title="${message(code: 'artist.name.label', default: 'Name')}" />
 					
 					</tr>
@@ -32,7 +32,9 @@
 				<g:each in="${artistInstanceList}" status="i" var="artistInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${artistInstance.id}">${fieldValue(bean: artistInstance, field: "name")}</g:link></td>
+            <td><g:link action="show" id="${artistInstance.id}">${fieldValue(bean: artistInstance, field: "id")}</g:link></td>
+
+						<td>${fieldValue(bean: artistInstance, field: "name")}</td>
 					
 					</tr>
 				</g:each>

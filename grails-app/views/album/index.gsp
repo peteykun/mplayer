@@ -24,12 +24,7 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="filePayload" title="${message(code: 'album.filePayload.label', default: 'File Payload')}" />
-					
-						<g:sortableColumn property="fileName" title="${message(code: 'album.fileName.label', default: 'File Name')}" />
-					
-						<g:sortableColumn property="fileType" title="${message(code: 'album.fileType.label', default: 'File Type')}" />
-					
+            <g:sortableColumn property="id" title="${message(code: 'album.id.label', default: 'ID')}" />
 						<g:sortableColumn property="name" title="${message(code: 'album.name.label', default: 'Name')}" />
 					
 					</tr>
@@ -38,11 +33,7 @@
 				<g:each in="${albumInstanceList}" status="i" var="albumInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${albumInstance.id}">${fieldValue(bean: albumInstance, field: "filePayload")}</g:link></td>
-					
-						<td>${fieldValue(bean: albumInstance, field: "fileName")}</td>
-					
-						<td>${fieldValue(bean: albumInstance, field: "fileType")}</td>
+						<td><g:link action="show" id="${albumInstance.id}">${fieldValue(bean: albumInstance, field: "id")}</g:link></td>
 					
 						<td>${fieldValue(bean: albumInstance, field: "name")}</td>
 					

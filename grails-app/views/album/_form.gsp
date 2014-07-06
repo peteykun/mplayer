@@ -11,24 +11,6 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: albumInstance, field: 'fileName', 'error')} required">
-	<label for="fileName">
-		<g:message code="album.fileName.label" default="File Name" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="fileName" required="" value="${albumInstance?.fileName}"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: albumInstance, field: 'fileType', 'error')} required">
-	<label for="fileType">
-		<g:message code="album.fileType.label" default="File Type" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="fileType" required="" value="${albumInstance?.fileType}"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: albumInstance, field: 'name', 'error')} required">
 	<label for="name">
 		<g:message code="album.name.label" default="Name" />

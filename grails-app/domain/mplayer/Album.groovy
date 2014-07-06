@@ -4,8 +4,6 @@ class Album {
     String name
 
     byte[] filePayload
-    String fileType
-    String fileName
 
     static hasMany = [tracks: Track]
 

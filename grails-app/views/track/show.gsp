@@ -25,7 +25,9 @@
 			
 				<g:if test="${trackInstance?.filePayload}">
 				<li class="fieldcontain">
-					<span id="filePayload-label" class="property-label"><g:message code="track.filePayload.label" default="File Payload" /></span>
+					<span id="filePayload-label" class="property-label"><g:message code="track.filePayload.label" default="Track" /></span>
+
+          <span class="property-value" aria-labelledby="property-label"><a href="${createLink(uri: '/track/listen/' + trackInstance.id)}" target="_blank">Listen</a></span>
 					
 				</li>
 				</g:if>
@@ -35,24 +37,6 @@
 					<span id="disc-label" class="property-label"><g:message code="track.disc.label" default="Disc" /></span>
 					
 						<span class="property-value" aria-labelledby="disc-label"><g:fieldValue bean="${trackInstance}" field="disc"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${trackInstance?.fileName}">
-				<li class="fieldcontain">
-					<span id="fileName-label" class="property-label"><g:message code="track.fileName.label" default="File Name" /></span>
-					
-						<span class="property-value" aria-labelledby="fileName-label"><g:fieldValue bean="${trackInstance}" field="fileName"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${trackInstance?.fileType}">
-				<li class="fieldcontain">
-					<span id="fileType-label" class="property-label"><g:message code="track.fileType.label" default="File Type" /></span>
-					
-						<span class="property-value" aria-labelledby="fileType-label"><g:fieldValue bean="${trackInstance}" field="fileType"/></span>
 					
 				</li>
 				</g:if>

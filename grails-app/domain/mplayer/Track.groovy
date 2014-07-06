@@ -6,8 +6,6 @@ class Track {
     int disc
 
     byte[] filePayload
-    String fileType
-    String fileName
 
     static belongsTo = [Artist, Album]
 

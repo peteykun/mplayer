@@ -20,24 +20,6 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: trackInstance, field: 'fileName', 'error')} required">
-	<label for="fileName">
-		<g:message code="track.fileName.label" default="File Name" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="fileName" required="" value="${trackInstance?.fileName}"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: trackInstance, field: 'fileType', 'error')} required">
-	<label for="fileType">
-		<g:message code="track.fileType.label" default="File Type" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="fileType" required="" value="${trackInstance?.fileType}"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: trackInstance, field: 'title', 'error')} required">
 	<label for="title">
 		<g:message code="track.title.label" default="Title" />

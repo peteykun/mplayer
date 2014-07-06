@@ -24,17 +24,13 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="filePayload" title="${message(code: 'track.filePayload.label', default: 'File Payload')}" />
+						<g:sortableColumn property="id" title="${message(code: 'track.id.label', default: 'ID')}" />
+          
+            <g:sortableColumn property="track" title="${message(code: 'track.track.label', default: 'Track')}" />
 					
 						<g:sortableColumn property="disc" title="${message(code: 'track.disc.label', default: 'Disc')}" />
 					
-						<g:sortableColumn property="fileName" title="${message(code: 'track.fileName.label', default: 'File Name')}" />
-					
-						<g:sortableColumn property="fileType" title="${message(code: 'track.fileType.label', default: 'File Type')}" />
-					
 						<g:sortableColumn property="title" title="${message(code: 'track.title.label', default: 'Title')}" />
-					
-						<g:sortableColumn property="track" title="${message(code: 'track.track.label', default: 'Track')}" />
 					
 					</tr>
 				</thead>
@@ -42,17 +38,13 @@
 				<g:each in="${trackInstanceList}" status="i" var="trackInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${trackInstance.id}">${fieldValue(bean: trackInstance, field: "filePayload")}</g:link></td>
+						<td><g:link action="show" id="${trackInstance.id}">${fieldValue(bean: trackInstance, field: "id")}</g:link></td>
+          
+            <td>${fieldValue(bean: trackInstance, field: "track")}</td>
 					
 						<td>${fieldValue(bean: trackInstance, field: "disc")}</td>
 					
-						<td>${fieldValue(bean: trackInstance, field: "fileName")}</td>
-					
-						<td>${fieldValue(bean: trackInstance, field: "fileType")}</td>
-					
 						<td>${fieldValue(bean: trackInstance, field: "title")}</td>
-					
-						<td>${fieldValue(bean: trackInstance, field: "track")}</td>
 					
 					</tr>
 				</g:each>

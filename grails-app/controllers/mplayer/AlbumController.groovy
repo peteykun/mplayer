@@ -19,6 +19,11 @@ class AlbumController {
         respond albumInstance
     }
 
+    def art(Album albumInstance) {
+        response.outputStream << albumInstance.filePayload
+        response.outputStream.flush()
+    }
+
     def create() {
         respond new Album(params)
     }
