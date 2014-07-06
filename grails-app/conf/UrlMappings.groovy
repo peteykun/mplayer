@@ -7,6 +7,10 @@ class UrlMappings {
             }
         }
 
+        "/admin/$adminController/$action?/$id?(.$format)?"{
+            controller = { "${params.adminController}Admin" }
+        }
+
         "/"(view:"/index")
         "500"(view:'/error')
 	}
