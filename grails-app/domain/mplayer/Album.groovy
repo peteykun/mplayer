@@ -13,5 +13,9 @@ class Album {
 
   String toString() {
     "${name}" 
-  } 
+  }
+
+  String cover_image_url() {
+    'http://localhost:8080/mplayer/albums/art/' + id
+  }
 }

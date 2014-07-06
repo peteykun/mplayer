@@ -12,7 +12,8 @@ class TrackMarshaller {
         disc: track.disc,
         title: track.title,
         artist: track.artist.name,
-        album: track.album.name
+        album: track.album.name,
+        url: track.url()
       ]
     }
   }

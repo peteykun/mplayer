@@ -15,7 +15,11 @@ class TracksController {
     }
 
     def listen(Track trackInstance) {
-        response.outputStream << trackInstance.filePayload
-        response.outputStream.flush()
+      response.outputStream << trackInstance.filePayload
+      response.outputStream.flush()
+    }
+
+    def foo() {
+      render "hi!"
     }
 }

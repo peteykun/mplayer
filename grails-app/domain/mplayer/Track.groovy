@@ -15,5 +15,9 @@ class Track {
 
   String toString() {
     "${title}" 
-  } 
+  }
+
+  String url() {
+    "http://localhost:8080/mplayer/tracks/listen/" + id
+  }
 }

@@ -1,0 +1,294 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  border: none;
+  height: 100%;
+  font-family: 'Roboto';
+}
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#left_panel, #right_panel, #albums {
+  height: 100%;
+}
+
+#left_panel, #right_panel, #albums {
+  overflow: hidden;
+}
+
+#left_panel {
+  background-color: #ddd;
+  width: 210px;
+  margin-right: 20px;
+  float: left;
+}
+
+#left_panel ul {
+  padding-left: 20px;
+  margin-bottom: 40px;
+}
+
+#left_panel ul li {
+  list-style: none;
+  font-size: 0.8em;
+  padding: 2px 7px;
+  margin: 2px 0;
+}
+
+#left_panel ul li.item {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+#left_panel ul li.item:hover {
+  background-color: #f5f5f5;
+  color: #555;
+  cursor: pointer;
+}
+
+#left_panel ul li.head {
+  font-weight: 700;
+  font-size: 1.05em;
+  margin-bottom: 12px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #777;
+  margin-right: 15px;
+}
+
+#left_panel ul li.head i {
+  font-weight: normal;
+  float: right;
+  margin-top: 3px;
+}
+
+#left_panel ul li.item.active {
+  background-color: #777;
+  color: #fff;
+}
+
+#albums {
+  padding-top: 20px;
+  margin-bottom: -20px;
+  overflow-y: scroll;
+  margin-right: 310px;
+  /* temp fix */ padding-left: 25px;
+}
+
+.album {
+  padding: 18px;
+  float: left;
+  width: 150px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+
+.album:hover .album_art {
+  opacity: 0.8;
+}
+
+.album:hover {
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+
+.album_art img {
+  width: 150px;
+  box-shadow: #999 1px 1px 5px;
+}
+
+.album_name {
+  font-size: 0.85em;
+  padding-top: 10px;
+  text-align: center;
+  color: #555;
+}
+
+#right_panel {
+  background-color: #333;
+  width: 300px;
+  float: right;
+  position: relative;
+}
+
+#right_panel #now_playing {
+  padding: 0 25px;
+}
+
+#right_panel #now_playing_art {
+  padding: 10px 0;
+}
+
+#right_panel #now_playing_art img {
+  width: 250px;
+  box-shadow: #999 0px 0px 10px;
+}
+
+#right_panel #now_playing_track, #right_panel #now_playing_artist {
+  text-align: center;
+  color: #fff;
+  text-shadow: 0px 0px 9px #fff;
+}
+
+#right_panel #now_playing_track {
+  margin-top: 5px;
+  margin-bottom: 7px;
+}
+
+#right_panel #now_playing_artist {
+  text-transform: uppercase;
+  font-size: 0.75em;
+}
+
+#right_panel #now_playing_controls {
+  color: #fff;
+  text-align: center;
+  margin: 23px 0 0 -1px;
+}
+
+#right_panel #now_playing_controls i {
+  opacity: 0.9;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+
+i.fa-backward {
+  padding: 5px 10px 5px 4px;
+}
+
+i.fa-forward {
+  padding: 5px 4px 5px 10px;
+}
+
+
+#right_panel #now_playing_controls i.fa-play-circle, #right_panel #now_playing_controls i.fa-play {
+  padding: 5px 5px 5px 20px;  
+}
+
+#right_panel #now_playing_controls i.fa-pause {
+  font-size: 3.3em;
+  padding: 11px 15px 10px 15px;
+}
+
+#right_panel #now_playing_controls i:hover {
+  opacity: 1;
+  text-shadow: 0px 0px 40px #fff;
+  box-shadow: #999 0px 0px 40px;
+  cursor: pointer;
+}
+
+#right_panel #now_playing_controls .fa-play-circle, #right_panel #now_playing_controls .fa-play,
+#right_panel #now_playing_controls .fa-pause {
+  display: block;
+  float: left;
+}
+
+#right_panel #now_playing_controls .fa-forward, #right_panel #now_playing_controls .fa-backward {
+  display: block;
+  float: left;
+  margin: 18px 20px;
+}
+
+#right_panel #now_playing_bg {
+  /*background-image: url('../images/cover.jpg');*/
+  background-size: cover;
+  background-position: center;
+  height: 460px;
+}
+
+#right_panel #now_playing {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 460px;
+}
+
+#playlist {
+  list-style: none;
+  padding: 0;
+  margin: 4px;
+  position: absolute;
+  display: block;
+  top: 460px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+#right_panel ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#albums ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 1);
+}
+
+#playlist .song .artist, #playlist .song .title {
+  float: left;
+}
+
+#playlist .song .artist {
+  color: #aaa;
+}
+
+#playlist .song #played_duration {
+  color: #888;
+}
+
+#playlist .song .duration, #playlist .song #played_duration {
+  float: right;
+}
+
+#playlist .song {
+  border-bottom: 1px solid #333;
+  background-color: #333;
+  color: #ddd;
+  font-size: 0.75em;
+  padding: 8px;
+  margin: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#playlist .song:hover {
+  background-color: #444;
+}
+
+#playlist .song.active {
+  background-color: #222;
+}
+
+.clearfix {
+  clear: both;
+}
+
+#seek_bar {
+  height: 5px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 13px;
+}
+
+#seek_bar:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#seek_bar #progress {
+  height: 100%;
+  width: 0%;
+  background-color: #fff;
+}

@@ -9,7 +9,8 @@ class AlbumMarshaller {
       return [
         id: album.id,
         name: album.name,
-        tracks: album.tracks
+        tracks: album.tracks,
+        cover_image_url: album.cover_image_url()
       ]
     }
   }
