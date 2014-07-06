@@ -1,20 +1,17 @@
 package mplayer
 
-import groovy.json.JsonBuilder;
+import grails.converters.JSON
 
 class TracksController {
 
     def index() {
       def tracks = Track.list()
 
-      def tracks = new JsonBuilder()
+      render tracks as JSON
+    }
 
-      def root = tracks.tracks {
-        id id
-      } 
-      //render(contentType: "application/json") {
-      //  Track.list()
-      //}
+    def show(Track trackInstance) {
+      render trackInstance as JSON
     }
 
     def listen(Track trackInstance) {

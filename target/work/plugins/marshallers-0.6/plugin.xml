@@ -1,0 +1,13 @@
+<plugin name='marshallers' version='0.6' grailsVersion='2.3 &gt; *'>
+  <author>Predrag Knezevic</author>
+  <authorEmail>pedjak@gmail.com</authorEmail>
+  <title>Easy Custom XML and JSON Marshalling for Grails Converters</title>
+  <description>\
+Easy registration and usage of custom XML and JSON marshallers supporting hierarchical configurations.
+
+Further documentation can be found on the GitHub repo.
+</description>
+  <documentation>https://github.com/pedjak/grails-marshallers</documentation>
+  <type>MarshallersGrailsPlugin</type>
+  <resources />
+</plugin>

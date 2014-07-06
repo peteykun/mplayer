@@ -72,5 +72,8 @@ grails.project.dependency.resolution = {
         //compile ":less-asset-pipeline:1.7.0"
         //compile ":coffee-asset-pipeline:1.7.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
+
+        // XML/JSON Marshallers
+        // compile ":marshallers:0.6"
     }
 }
