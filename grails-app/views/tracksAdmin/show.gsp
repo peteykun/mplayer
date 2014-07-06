@@ -19,7 +19,7 @@
 				<li class="fieldcontain">
 					<span id="filePayload-label" class="property-label"><g:message code="track.filePayload.label" default="Track" /></span>
 
-          <span class="property-value" aria-labelledby="property-label"><a href="${createLink(uri: '/track/listen/' + trackInstance.id)}" target="_blank">Listen</a></span>
+          <span class="property-value" aria-labelledby="property-label"><a href="${createLink(uri: '/tracks/listen/' + trackInstance.id)}" target="_blank">Listen</a></span>
 					
 				</li>
 				</g:if>

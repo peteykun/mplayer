@@ -19,11 +19,6 @@ class TracksAdminController {
         respond trackInstance
     }
 
-    def listen(Track trackInstance) {
-        response.outputStream << trackInstance.filePayload
-        response.outputStream.flush()
-    }
-
     def create() {
         respond new Track(params)
     }
