@@ -23,6 +23,51 @@
 			</g:if>
 			<ol class="property-list album">
 			
+				<g:if test="${albumInstance?.filePayload}">
+				<li class="fieldcontain">
+					<span id="filePayload-label" class="property-label"><g:message code="album.filePayload.label" default="File Payload" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${albumInstance?.fileName}">
+				<li class="fieldcontain">
+					<span id="fileName-label" class="property-label"><g:message code="album.fileName.label" default="File Name" /></span>
+					
+						<span class="property-value" aria-labelledby="fileName-label"><g:fieldValue bean="${albumInstance}" field="fileName"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${albumInstance?.fileType}">
+				<li class="fieldcontain">
+					<span id="fileType-label" class="property-label"><g:message code="album.fileType.label" default="File Type" /></span>
+					
+						<span class="property-value" aria-labelledby="fileType-label"><g:fieldValue bean="${albumInstance}" field="fileType"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${albumInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="album.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${albumInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${albumInstance?.tracks}">
+				<li class="fieldcontain">
+					<span id="tracks-label" class="property-label"><g:message code="album.tracks.label" default="Tracks" /></span>
+					
+						<g:each in="${albumInstance.tracks}" var="t">
+						<span class="property-value" aria-labelledby="tracks-label"><g:link controller="track" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:albumInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
