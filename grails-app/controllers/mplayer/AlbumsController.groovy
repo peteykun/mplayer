@@ -11,7 +11,11 @@ class AlbumsController {
     }
 
     def show(Album albumInstance) {
-      render albumInstance as JSON
+      render(contentType: "application/json") {
+        album(id: albumInstance.id,
+        name: albumInstance.name,
+        tracks: albumInstance.getTracks())
+      }
     }
 
     def art(Album albumInstance) {

@@ -97,7 +97,7 @@ function loadPlaylist(playlist) {
 }
 
 function loadClickedPlaylist(e) {
-  $.get(baseurl + "/albums/show/" + $(this).data('id') + ".json", function(data) { loadPlaylist(data.tracks) });
+  $.get(baseurl + "/albums/show/" + $(this).data('id') + ".json", function(data) { loadPlaylist(data.album.tracks) });
 }
 
 function playSong(index) {

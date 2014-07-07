@@ -8,8 +8,7 @@ class ArtistMarshaller {
     JSON.registerObjectMarshaller(Artist) { Artist artist ->
       return [
         id: artist.id,
-        name: artist.name,
-        tracks: artist.tracks
+        name: artist.name
       ]
     }
   }

@@ -127,6 +127,8 @@ html, body {
 
 .album_art img {
   width: 150px;
+  height: 150px;
+  overflow: hidden;
   box-shadow: #999 1px 1px 5px;
 }
 
@@ -135,6 +137,12 @@ html, body {
   padding-top: 10px;
   text-align: center;
   color: #555;
+  height: 2.8em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
 }
 
 #right_panel {
