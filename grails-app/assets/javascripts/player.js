@@ -97,7 +97,7 @@ function loadPlaylist(playlist) {
 }
 
 function loadClickedPlaylist(e) {
-  $.get(baseurl + "/albums/show/" + $(this).data('id') + ".json", function(data) { loadPlaylist(data.album.tracks) });
+  $.get(baseurl + "/" + $(this).data('type') + "s/show/" + $(this).data('id') + ".json", function(data) { loadPlaylist(data.album.tracks) });
 }
 
 function playSong(index) {
@@ -163,12 +163,45 @@ function fetchAlbums() {
   $.get(baseurl + "/albums.json", function(data) { loadAlbums(data) });
 }
 
+function fetchArtists() {
+  $.get(baseurl + "/artists.json", function(data) { loadArtists(data) });
+}
+
+function loadArtists(albums) {
+  $(".active.item").removeClass('active');
+  $("#all_artists").addClass('active');
+
+  $('#albums').empty();
+
+  var albumCount = 0;
+
+  albums.forEach(function(album) {
+    var html = '<div class="album" data-id="' + album.id + '" data-type="artist">' +
+          '<div class="album_art">' +
+            '<img src="' + album.cover_image_url + '">' +
+          '</div>' +
+
+          '<div class="album_name">' +
+            album.name +
+          '</div>' +
+        '</div>';
+
+    setTimeout(function() { $(html).hide().appendTo("#albums").fadeIn(250) }, albumCount*100);
+    albumCount++;
+  });
+}
+
+
+
 function loadAlbums(albums) {
+  $(".active.item").removeClass('active');
+  $("#all_albums").addClass('active');
+
   $('#albums').empty();
   var albumCount = 0;
 
   albums.forEach(function(album) {
-    var html = '<div class="album" data-id="' + album.id + '">' +
+    var html = '<div class="album" data-id="' + album.id + '" data-type="album">' +
           '<div class="album_art">' +
             '<img src="' + album.cover_image_url + '">' +
           '</div>' +
@@ -239,6 +272,10 @@ $(function() {
   myOverlayzone.on("totaluploadprogress", function(total_upload_progress, totalBytes, totalBytesSent) {
     $(".dial").val(total_upload_progress).trigger('change');
   });
+
+  // Bind left menu items
+  $("#all_albums").on('click', fetchAlbums);
+  $("#all_artists").on('click', fetchArtists);
 
   // Bind the upload dialog
   $("#upload_songs").on('click', function() {

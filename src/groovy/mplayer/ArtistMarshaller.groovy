@@ -8,7 +8,8 @@ class ArtistMarshaller {
     JSON.registerObjectMarshaller(Artist) { Artist artist ->
       return [
         id: artist.id,
-        name: artist.name
+        name: artist.name,
+        cover_image_url: Track.findByArtist(artist).album.cover_image_url()
       ]
     }
   }

@@ -14,12 +14,17 @@ class ArtistsController {
     }
 
     def index() {
-      def artists = Artist.list()
+
+      def artists = Artist.list(sort: 'name')
 
       render artists as JSON
     }
 
     def show(Artist artistInstance) {
-      render artistInstance as JSON
+      render(contentType: "application/json") {
+        album(id: artistInstance.id,
+        name: artistInstance.name,
+        tracks: artistInstance.tracks)
+      }
     }
 }

@@ -14,7 +14,7 @@ class AlbumsController {
     }
 
     def index() {
-      def albums = Album.findAllWhere(uploader: session.registeredUser)
+      def albums = Album.findAll('from Album as a where a.uploader = :uploader order by a.name', [uploader: session.registeredUser])
 
       render albums as JSON
     }

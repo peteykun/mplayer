@@ -11,8 +11,8 @@
     <div id="left_panel">
       <ul>
         <li class="head">Library <i class="fa fa-music"></i></li>
-        <li class="active item">All Albums</li>
-        <li class="item">All Artists</li>
+        <li class="active item" id="all_albums">All Albums</li>
+        <li class="item" id="all_artists">All Artists</li>
         <li class="separator"></li>
         <li class="item">Recently Played</li>
         <li class="item">Recently Added</li>
