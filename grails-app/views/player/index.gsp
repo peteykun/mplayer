@@ -92,7 +92,7 @@
       </div>
     </div>
 
-    <asset:javascript src="jquery-1.11.1.min.js"/>
+    <asset:javascript src="application.js"/>  <!-- jQuery -->
     <asset:javascript src="player.js"/>
     <asset:javascript src="dropzone.js"/>
     <asset:javascript src="jquery.knob.min.js"/>

@@ -19,7 +19,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[controller:'albumsAdmin', action:'update']" method="PUT"  enctype="multipart/form-data">
+			<g:form url="[id: albumInstance.id, controller:'albumsAdmin', action:'update']" method="PUT"  enctype="multipart/form-data">
 				<g:hiddenField name="version" value="${albumInstance?.version}" />
 				<fieldset class="form">
 					<g:render template="form"/>

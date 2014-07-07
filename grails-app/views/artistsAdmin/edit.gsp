@@ -19,7 +19,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[controller:'artistsAdmin', action:'update']" method="PUT" >
+			<g:form url="[id: artistInstance.id, controller:'artistsAdmin', action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${artistInstance?.version}" />
 				<fieldset class="form">
 					<g:render template="form"/>

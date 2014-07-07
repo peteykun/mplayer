@@ -20,6 +20,7 @@
 
 </div>
 
+<%--
 <div class="fieldcontain ${hasErrors(bean: albumInstance, field: 'tracks', 'error')} ">
 	<label for="tracks">
 		<g:message code="album.tracks.label" default="Tracks" />
@@ -28,4 +29,5 @@
 	<g:select name="tracks" from="${mplayer.Track.list()}" multiple="multiple" optionKey="id" size="5" value="${albumInstance?.tracks*.id}" class="many-to-many"/>
 
 </div>
+--%>
 
