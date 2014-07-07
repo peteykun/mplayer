@@ -3,6 +3,7 @@
   <head>
     <asset:stylesheet src="player.css"/>
     <asset:stylesheet src="font-awesome.css"/>
+    <asset:stylesheet src="dropzone.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
 
@@ -85,8 +86,15 @@
       -->
     </div>
 
+    <div id="overlay">
+      <div id="progress_wheel">
+        <input type="text" value="50" data-thickness=".2" data-skin="tron" data-fgColor="#ffec03" data-width="100%" class="dial" data-readOnly="true">
+      </div>
+    </div>
+
     <asset:javascript src="jquery-1.11.1.min.js"/>
-    <asset:javascript src="dropzone.js"/>
     <asset:javascript src="player.js"/>
+    <asset:javascript src="dropzone.js"/>
+    <asset:javascript src="jquery.knob.min.js"/>
   </body>
 </html>

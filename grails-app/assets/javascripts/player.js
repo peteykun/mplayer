@@ -14,6 +14,14 @@ var playlist_position = null;
 /* Path */
 var baseurl = '/mplayer';
 
+function compare_tracks(a,b) {
+  if (a.disc < b.disc || (a.disc == b.disc && a.track < b.track))
+     return -1;
+  if (a.disc > b.disc || (a.disc == b.disc && a.track > b.track))
+    return 1;
+  return 0;
+}
+
 function get_formatted_time(seconds) {
   var mm = Math.floor(seconds/60);
   var ss = Math.round(seconds%60);
@@ -66,6 +74,7 @@ function echoPosition() {
 function loadPlaylist(playlist) {
   $('#playlist').empty();
   current_playlist = playlist;
+  current_playlist.sort(compare_tracks);
 
   var songCount = 0;
 
@@ -88,7 +97,7 @@ function loadPlaylist(playlist) {
 }
 
 function loadClickedPlaylist(e) {
-  $.get(baseurl + "/albums/show/1.json", function(data) { loadPlaylist(data.tracks) });
+  $.get(baseurl + "/albums/show/" + $(this).data('id') + ".json", function(data) { loadPlaylist(data.tracks) });
 }
 
 function playSong(index) {
@@ -118,8 +127,8 @@ function playSong(index) {
   $('#now_playing_track').html(song.title);
   $('#now_playing_artist').html(song.artist);
 
-  $('#now_playing_art img').attr('src', song.art);
-  $('#now_playing_bg').css('background-image', "url('" + song.art + "')");
+  $('#now_playing_art img').attr('src', song.cover_image_url);
+  $('#now_playing_bg').css('background-image', "url('" + song.cover_image_url + "')");
 
   play();
 }
@@ -159,7 +168,7 @@ function loadAlbums(albums) {
   var albumCount = 0;
 
   albums.forEach(function(album) {
-    var html = '<div class="album">' +
+    var html = '<div class="album" data-id="' + album.id + '">' +
           '<div class="album_art">' +
             '<img src="' + album.cover_image_url + '">' +
           '</div>' +
@@ -198,6 +207,36 @@ $(function() {
   // Bind songs
   $('#playlist').on('click', '.song', playClickedSong);
 
+  var set_up = false;
+
   // Bind dropzone for uploads
   var myDropzone = new Dropzone("#albums", { url: baseurl + "/tracks/create", clickable: false});
+
+  myDropzone.on("dragenter", function(file) {
+    $('#overlay').fadeIn(400, function() {
+      // Set up upload progress bar
+      if(!set_up)
+        $(".dial").knob();
+        $("#overlay input").css('opacity', 1);
+
+      set_up = true;
+    });
+  });
+
+  var myOverlayzone = new Dropzone("#overlay", { url: baseurl + "/tracks/create", clickable: false, parallelUploads: 1});
+
+  /*
+  myOverlayzone.on("dragleave", function(file) {
+    $('#overlay').fadeOut();
+  });
+  */
+
+  myOverlayzone.on("queuecomplete", function(file) {
+    $('#overlay').fadeOut();
+    fetchAlbums();
+  });
+
+  myOverlayzone.on("totaluploadprogress", function(total_upload_progress, totalBytes, totalBytesSent) {
+    $(".dial").val(total_upload_progress).trigger('change');
+  });
 });

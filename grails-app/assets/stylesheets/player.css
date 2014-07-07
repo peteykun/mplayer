@@ -4,6 +4,7 @@ html, body {
   border: none;
   height: 100%;
   font-family: 'Roboto';
+  position: relative;
 }
 
 * {
@@ -12,6 +13,33 @@ html, body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.90); /*dim the background*/
+  display: none;
+  text-align: center;
+}
+
+#overlay #progress_wheel {
+  margin: 0 auto;
+  margin-top: 19%;
+  width: 20%;
+  /* opacity: 0; */
+}
+
+#overlay input {
+  opacity: 0;
+}
+
+.dz-file-preview {
+  display: none;
 }
 
 #left_panel, #right_panel, #albums {

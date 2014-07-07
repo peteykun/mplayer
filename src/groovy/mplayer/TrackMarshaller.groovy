@@ -13,7 +13,8 @@ class TrackMarshaller {
         title: track.title,
         artist: track.artist.name,
         album: track.album.name,
-        url: track.url()
+        url: track.url(),
+        cover_image_url: track.album.cover_image_url()
       ]
     }
   }
