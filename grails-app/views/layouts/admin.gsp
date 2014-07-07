@@ -18,14 +18,28 @@
   </head>
   <body>
     <div id="grailsLogo" role="banner"><a href="${createLink(uri: '/admin')}">MPlayer Admin</a></div>
+    
+
+
     <div class="nav" role="navigation">
       <ul>
         <!-- <li><a class="home" href="${createLink(uri: '/admin')}"><g:message code="default.home.label"/></a></li> -->
-        <li><a class="list" href="${createLink(uri: '/admin/albums')}">Albums</a></li>
-        <li><a class="list" href="${createLink(uri: '/admin/artists')}">Artists</a></li>
-        <li><a class="list" href="${createLink(uri: '/admin/tracks')}">Tracks</a></li>
+        
+        <g:if test="${session.admin}">
+          <li><a class="list" href="${createLink(uri: '/admin/albums')}">Albums</a></li>
+          <li><a class="list" href="${createLink(uri: '/admin/artists')}">Artists</a></li>
+          <li><a class="list" href="${createLink(uri: '/admin/tracks')}">Tracks</a></li>
+          <li><a class="home" href="${createLink(uri: '/admin/logout')}">Logout</a></li>
+        </g:if>
+
+        <g:else>
+          <li><a class="home" href="${createLink(uri: '/admin')}"><g:message code="default.home.label"/></a></li>
+        </g:else>
+
       </ul>
     </div>
+    
+
     <g:layoutBody/>
     <div class="footer" role="contentinfo"></div>
     <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>

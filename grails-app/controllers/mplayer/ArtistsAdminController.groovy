@@ -7,6 +7,15 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class ArtistsAdminController {
+  
+  def beforeInterceptor = [action:this.&checkAdmin]
+
+  def checkAdmin() {
+    if(!session.admin) {
+      redirect(controller:'admin',action:'login')
+      return false
+    }
+  }
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 

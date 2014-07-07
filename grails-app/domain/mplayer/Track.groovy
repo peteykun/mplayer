@@ -9,6 +9,9 @@ class Track {
 
   byte[] filePayload
 
+  static hasMany = [playlists: Playlist]
+  static belongsTo = Playlist
+
   static constraints = {
     filePayload(nullable: true, maxSize: 1073741824) 
   }

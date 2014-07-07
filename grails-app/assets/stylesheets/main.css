@@ -601,3 +601,18 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+
+#login_box {
+  margin: 0 auto;
+  background-color: #eee;
+  margin: 0 auto;
+  padding: 40px 50px;
+  border: 1px solid #bbb;
+  width: 35%;
+  margin-top: 80px;
+}
+
+#login_box input[type=text], #login_box input[type=password] {
+  margin-bottom: 15px;
+  width: 100%;
+}

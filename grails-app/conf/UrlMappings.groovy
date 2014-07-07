@@ -11,7 +11,13 @@ class UrlMappings {
             controller = { "${params.adminController}Admin" }
         }
 
-        "/"(view:"/index")
+        "/login"(controller:"registeredUser",action:"login")
+        "/register"(controller:"registeredUser",action:"register")
+        "/logout"(controller:"registeredUser",action:"logout")
+
+        "/admin"(controller:"admin",action:"login")
+
+        "/"(controller:"registeredUser",action:"login")
         "500"(view:'/error')
 	}
 }

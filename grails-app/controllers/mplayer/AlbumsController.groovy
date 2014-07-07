@@ -3,9 +3,18 @@ package mplayer
 import grails.converters.JSON
 
 class AlbumsController {
+  
+    def beforeInterceptor = [action:this.&checkUser]
+  
+    def checkUser() {
+      if(!session.registeredUser) {
+        redirect(controller:'registeredUser',action:'login')
+        return false
+      }
+    }
 
     def index() {
-      def albums = Album.list()
+      def albums = Album.findAllWhere(uploader: session.registeredUser)
 
       render albums as JSON
     }

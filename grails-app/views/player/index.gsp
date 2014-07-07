@@ -26,10 +26,9 @@
       </ul>
 
       <ul>
-        <li class="head">Add Music <i class="fa fa-plus"></i></li>
-        <li class="item">mPlayer Store</li>
-        <li class="item">Upload songs</li>
-        <li class="item">Add from YouTube</li>
+        <li class="head">Manage <i class="fa fa-plus"></i></li>
+        <a class="list" href="${createLink(uri: '/logout')}"><li class="item">Log out</li></a>
+        <li class="item" id="upload_songs">Upload songs</li>
       </ul>
     </div>
 
@@ -89,6 +88,14 @@
     <div id="overlay">
       <div id="progress_wheel">
         <input type="text" value="50" data-thickness=".2" data-skin="tron" data-fgColor="#ffec03" data-width="100%" class="dial" data-readOnly="true">
+      </div>
+    </div>
+
+    <div id="dialog_container">
+      <div class="dialog">
+        To upload songs to your library, simply drag them anywhere into the library.<br><br>
+
+        <a href="#" class="dismiss button">Dismiss</a>
       </div>
     </div>
 

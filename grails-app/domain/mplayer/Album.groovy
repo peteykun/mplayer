@@ -2,6 +2,7 @@ package mplayer
 
 class Album {
   String name
+  RegisteredUser uploader
 
   byte[] filePayload
 

@@ -14,6 +14,15 @@ import org.jaudiotagger.tag.*;
 import org.jaudiotagger.tag.images.Artwork;
 
 class TracksController {
+  
+    def beforeInterceptor = [action:this.&checkUser]
+  
+    def checkUser() {
+      if(!session.registeredUser) {
+        redirect(controller:'registeredUser',action:'login')
+        return false
+      }
+    }
 
     def index() {
       def tracks = Track.list()
@@ -70,7 +79,8 @@ class TracksController {
         album = new Album(
           name: album_name,
           year: 2014,
-          filePayload: imageInBytes
+          filePayload: imageInBytes,
+          uploader: session.registeredUser
         );
 
         album.save();

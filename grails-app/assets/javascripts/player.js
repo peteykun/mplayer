@@ -239,4 +239,13 @@ $(function() {
   myOverlayzone.on("totaluploadprogress", function(total_upload_progress, totalBytes, totalBytesSent) {
     $(".dial").val(total_upload_progress).trigger('change');
   });
+
+  // Bind the upload dialog
+  $("#upload_songs").on('click', function() {
+    $("#dialog_container").fadeIn();
+  })
+
+  $(".dismiss").on('click', function() {
+    $("#dialog_container").fadeOut();
+  })
 });
