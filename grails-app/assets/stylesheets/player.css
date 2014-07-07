@@ -284,6 +284,10 @@ i.fa-forward {
   color: #888;
 }
 
+#playlist .song .duration {
+  display: none;
+}
+
 #playlist .song .duration, #playlist .song #played_duration {
   float: right;
 }

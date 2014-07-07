@@ -19,7 +19,10 @@ class AlbumsController {
     }
 
     def art(Album albumInstance) {
+      if(albumInstance.filePayload != null) {
         response.outputStream << albumInstance.filePayload
         response.outputStream.flush()
+      } else
+        redirect(uri: '/assets/generic-album.jpg')
     }
 }
