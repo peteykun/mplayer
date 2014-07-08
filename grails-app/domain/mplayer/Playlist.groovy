@@ -1,10 +1,15 @@
 package mplayer
 
 class Playlist {
-    RegisteredUser creator;
+  RegisteredUser creator
+  String name
 
-    static hasMany = [tracks: Track]
+  static hasMany = [tracks: Track]
 
-    static constraints = {
-    }
+  static constraints = {
+  }
+
+  String toString() {
+    return name;
+  }
 }

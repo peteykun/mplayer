@@ -23,6 +23,15 @@
 					
 				</li>
 				</g:if>
+      
+        <g:if test="${artistInstance?.uploader}">
+        <li class="fieldcontain">
+          <span id="uploader-label" class="property-label"><g:message code="artist.uploader.label" default="Uploader" /></span>
+          
+            <span class="property-value" aria-labelledby="uploader-label"><g:fieldValue bean="${artistInstance.uploader}" field="email"/></span>
+          
+        </li>
+        </g:if>
 			
 				<g:if test="${artistInstance?.tracks}">
 				<li class="fieldcontain">

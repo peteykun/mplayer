@@ -65,7 +65,7 @@ class RegisteredUserController {
 
   def logout = {
     if (session.registeredUser) {
-      session.invalidate()
+      session.registeredUser = null
     }
 
     redirect(action:'login')

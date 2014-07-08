@@ -159,20 +159,27 @@ function previous() {
   }
 }
 
-function fetchAlbums() {
-  $.get(baseurl + "/albums.json", function(data) { loadAlbums(data) });
+function highlight_menu_item(name) {
+  $(".active.item").removeClass('active');
+  $(name).addClass('active');
+}
+
+function fetchAlbums(method) {
+  if (typeof method === 'undefined') { method = 'index'; }
+
+  $.get(baseurl + "/albums/" + method + ".json", function(data) { loadAlbums(data) });
 }
 
 function fetchArtists() {
   $.get(baseurl + "/artists.json", function(data) { loadArtists(data) });
 }
 
+function fetchPlaylist(id) {
+  $.get(baseurl + "/playlists/show/" + id + ".json", function(data) { console.log(data) });
+}
+
 function loadArtists(albums) {
-  $(".active.item").removeClass('active');
-  $("#all_artists").addClass('active');
-
   $('#albums').empty();
-
   var albumCount = 0;
 
   albums.forEach(function(album) {
@@ -191,12 +198,7 @@ function loadArtists(albums) {
   });
 }
 
-
-
 function loadAlbums(albums) {
-  $(".active.item").removeClass('active');
-  $("#all_albums").addClass('active');
-
   $('#albums').empty();
   var albumCount = 0;
 
@@ -250,32 +252,56 @@ $(function() {
       // Set up upload progress bar
       if(!set_up)
         $(".dial").knob();
-        $("#overlay input").css('opacity', 1);
-
+    
+      $("#overlay input").css('opacity', 1);
+      $(".dial").val(0).trigger('change');
       set_up = true;
     });
   });
 
   var myOverlayzone = new Dropzone("#overlay", { url: baseurl + "/tracks/create", clickable: false, parallelUploads: 1});
 
-  /*
   myOverlayzone.on("dragleave", function(file) {
     $('#overlay').fadeOut();
   });
-  */
 
   myOverlayzone.on("queuecomplete", function(file) {
     $('#overlay').fadeOut();
-    fetchAlbums();
+    fetchAlbums("recentlyAdded");
+    highlight_menu_item("#recently_added");
   });
 
   myOverlayzone.on("totaluploadprogress", function(total_upload_progress, totalBytes, totalBytesSent) {
-    $(".dial").val(total_upload_progress).trigger('change');
+    if(total_upload_progress > $(".dial").val())
+      $(".dial").val(total_upload_progress).trigger('change');
   });
 
   // Bind left menu items
-  $("#all_albums").on('click', fetchAlbums);
-  $("#all_artists").on('click', fetchArtists);
+  $("#all_albums").on('click', function() {
+    fetchAlbums();
+    highlight_menu_item("#all_albums");
+  });
+
+  $("#all_artists").on('click', function() {
+    fetchArtists();
+    highlight_menu_item("#all_artists");
+  });
+
+  $("#recently_played").on('click', function() {
+    fetchAlbums("recentlyPlayed");
+    highlight_menu_item("#recently_played");
+  });
+
+  $("#recently_added").on('click', function() {
+    fetchAlbums("recentlyAdded");
+    highlight_menu_item("#recently_added");
+  });
+
+  // Bind playlists
+  $("#playlists").on('click', '.playlist', function() {
+    fetchPlaylist($(this).data('id'));
+    highlight_menu_item($(this));
+  });
 
   // Bind the upload dialog
   $("#upload_songs").on('click', function() {

@@ -27,6 +27,10 @@ html, body {
   text-align: center;
 }
 
+#overlay * {
+  pointer-events: none;
+}
+
 #dialog_container {
   position: absolute;
   top: 0;

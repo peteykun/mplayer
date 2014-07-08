@@ -19,6 +19,20 @@ class AlbumsController {
       render albums as JSON
     }
 
+    def recentlyPlayed() {
+
+      def albums = Album.findAll('from Album as a where a.uploader = :uploader and a.listened is not null order by a.listened desc', [uploader: session.registeredUser])
+
+      render albums as JSON
+    }
+
+    def recentlyAdded() {
+
+      def albums = Album.findAll('from Album as a where a.uploader = :uploader order by a.uploaded desc', [uploader: session.registeredUser])
+
+      render albums as JSON
+    }
+
     def show(Album albumInstance) {
       render(contentType: "application/json") {
         album(id: albumInstance.id,

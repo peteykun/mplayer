@@ -11,5 +11,12 @@ class PlayerController {
       }
     }
 
-    def index() { }
+    def index() {
+      if(!session.registeredUser.isAttached())
+        session.registeredUser.attach()
+
+      def playlists = session.registeredUser.getPlaylists()
+
+      [playlists: playlists]
+    }
 }

@@ -32,6 +32,15 @@
 					
 				</li>
 				</g:if>
+      
+        <g:if test="${albumInstance?.uploader}">
+        <li class="fieldcontain">
+          <span id="uploader-label" class="property-label"><g:message code="album.uploader.label" default="Name" /></span>
+          
+            <span class="property-value" aria-labelledby="uploader-label"><g:fieldValue bean="${albumInstance.uploader}" field="email"/></span>
+          
+        </li>
+        </g:if>
 			
 				<g:if test="${albumInstance?.tracks}">
 				<li class="fieldcontain">
@@ -45,6 +54,7 @@
 				</g:if>
 			
 			</ol>
+      
 			<g:form url="[id: albumInstance.id, controller:'albumsAdmin', action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="edit" controller="albumsAdmin" action="edit" id="${albumInstance.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

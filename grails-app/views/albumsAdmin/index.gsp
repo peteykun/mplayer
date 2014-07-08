@@ -18,6 +18,9 @@
 					<tr>
             <g:sortableColumn property="id" title="${message(code: 'album.id.label', default: 'ID')}" />
 						<g:sortableColumn property="name" title="${message(code: 'album.name.label', default: 'Name')}" />
+            <g:sortableColumn property="uploader" title="${message(code: 'album.uploader.label', default: 'Uploader')}" />
+            <g:sortableColumn property="uploaded" title="${message(code: 'album.uploaded.label', default: 'Uploaded')}" />
+            <g:sortableColumn property="listened" title="${message(code: 'album.listened.label', default: 'Last Listened To')}" />
 					</tr>
 				</thead>
 				<tbody>
@@ -27,6 +30,9 @@
 						<td><g:link action="show" id="${albumInstance.id}">${fieldValue(bean: albumInstance, field: "id")}</g:link></td>
 					
 						<td>${fieldValue(bean: albumInstance, field: "name")}</td>
+            <td><%= albumInstance.uploader.email %></td>
+            <td>${fieldValue(bean: albumInstance, field: "uploaded")}</td>
+            <td>${fieldValue(bean: albumInstance, field: "listened")}</td>
 					
 					</tr>
 				</g:each>

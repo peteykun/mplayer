@@ -15,13 +15,13 @@ class ArtistsController {
 
     def index() {
 
-      def artists = Artist.list(sort: 'name')
+      def artists = Artist.findAll('from Artist as a where a.uploader = :uploader order by a.name', [uploader: session.registeredUser])
 
       render artists as JSON
     }
 
     def show(Artist artistInstance) {
-      render(contentType: "application/json") {
+      playlist(contentType: "application/json") {
         album(id: artistInstance.id,
         name: artistInstance.name,
         tracks: artistInstance.tracks)

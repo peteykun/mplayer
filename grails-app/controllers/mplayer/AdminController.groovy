@@ -9,6 +9,15 @@ class AdminController {
       redirect(controller:'albumsAdmin',action:'index')
       return false
     }
+
+    if(Admin.count() == 0) {
+      Admin a = new Admin(
+        email: 'admin@example.com',
+        password: 'password'
+      );
+
+      a.save();
+    }
   }
 
   def login = {
@@ -63,7 +72,7 @@ class AdminController {
 
   def logout = {
     if (session.admin) {
-      session.invalidate()
+      session.admin = null
     }
 
     redirect(action:'login')

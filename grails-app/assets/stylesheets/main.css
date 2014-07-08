@@ -615,4 +615,6 @@ a.skip {
 #login_box input[type=text], #login_box input[type=password] {
   margin-bottom: 15px;
   width: 100%;
+  border: 1px solid #bbb;
+  padding: 5px 7px;
 }

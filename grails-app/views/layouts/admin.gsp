@@ -28,7 +28,10 @@
         <g:if test="${session.admin}">
           <li><a class="list" href="${createLink(uri: '/admin/albums')}">Albums</a></li>
           <li><a class="list" href="${createLink(uri: '/admin/artists')}">Artists</a></li>
+          <li><a class="list" href="${createLink(uri: '/admin/playlists')}">Playlists</a></li>
           <li><a class="list" href="${createLink(uri: '/admin/tracks')}">Tracks</a></li>
+          <li><a class="list" href="${createLink(uri: '/admin/registeredUsers')}">Registered Users</a></li>
+          <li><a class="list" href="${createLink(uri: '/admin/admins')}">Admins</a></li>
           <li><a class="home" href="${createLink(uri: '/admin/logout')}">Logout</a></li>
         </g:if>
 

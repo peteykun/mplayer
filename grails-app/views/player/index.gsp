@@ -14,15 +14,19 @@
         <li class="active item" id="all_albums">All Albums</li>
         <li class="item" id="all_artists">All Artists</li>
         <li class="separator"></li>
-        <li class="item">Recently Played</li>
-        <li class="item">Recently Added</li>
+        <li class="item" id="recently_played">Recently Played</li>
+        <li class="item" id="recently_added">Recently Added</li>
       </ul>
 
-      <ul>
+      <ul id="playlists">
         <li class="head">Playlists <i class="fa fa-bars"></i></li>
-        <li class="item">Pefume</li>
-        <li class="item">Pocket Monsters</li>
-        <li class="item">Anime music</li>
+        
+        <g:each in="${playlists}">
+          <li class="playlist item" data-id="<%= it.id %>"><%= it.name %></li>
+        </g:each>
+
+        <li class="separator"></li>
+        <li class="item" id="new_playlist">New Playlist</li>
       </ul>
 
       <ul>
@@ -87,7 +91,7 @@
 
     <div id="overlay">
       <div id="progress_wheel">
-        <input type="text" value="50" data-thickness=".2" data-skin="tron" data-fgColor="#ffec03" data-width="100%" class="dial" data-readOnly="true">
+        <input type="text" value="0" data-thickness=".2" data-skin="tron" data-fgColor="#ffec03" data-width="100%" class="dial" data-readOnly="true">
       </div>
     </div>
 

@@ -35,6 +35,11 @@ class TracksController {
     }
 
     def listen(Track trackInstance) {
+      def album = trackInstance.getAlbum()
+
+      album.listened = new Date();
+      album.save(flush: true, failOnError: true);
+
       response.outputStream << trackInstance.filePayload
       response.outputStream.flush()
     }
@@ -63,24 +68,35 @@ class TracksController {
         imageInBytes = Files.readAllBytes(out.toPath())
       }
 
-      Artist artist = Artist.findByName(artist_name)
+      def artistQuery = Artist.where{
+        (name == artist_name && uploader == session.registeredUser)
+      }
+
+      Artist artist = artistQuery.find()
 
       if(artist == null) {
         artist = new Artist(
-          name: artist_name
+          name: artist_name,
+          uploader: session.registeredUser
         );
 
         artist.save();
       }
 
-      Album album = Album.findByName(album_name)
+      def albumQuery = Album.where{
+        (name == album_name && uploader == session.registeredUser)
+      }
+
+      Album album = albumQuery.find()
 
       if(album == null ) {
         album = new Album(
           name: album_name,
           year: 2014,
           filePayload: imageInBytes,
-          uploader: session.registeredUser
+          uploader: session.registeredUser,
+          uploaded: new Date(),
+          listened: null
         );
 
         album.save();

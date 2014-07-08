@@ -3,6 +3,8 @@ package mplayer
 class Album {
   String name
   RegisteredUser uploader
+  Date uploaded;
+  Date listened;
 
   byte[] filePayload
 
@@ -10,6 +12,7 @@ class Album {
 
   static constraints = {
     filePayload(nullable: true, maxSize: 1073741824) 
+    listened(nullable: true)
   }
 
   String toString() {
