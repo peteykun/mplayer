@@ -1,12 +1,27 @@
-<g:if test="${flash.message}">
-  <div class="alert alert-error" style="display: block">${flash.message}</div>
-</g:if>
+<html>
+  <head>
+    <title>MPlayer</title>
+    <asset:stylesheet src="flagship.css"/>
+    <asset:stylesheet src="font-awesome.css"/>
+  </head>
 
-<g:form action="handleRegistration" method="post">
+  <body>
+    <div class="panel">
+      <g:if test="${flash.message}">
+        <div class="alert alert-error" style="display: block">${flash.message}</div>
+      </g:if>
 
-Email: <br><input id="email" type='text' name='email' value='${admins?.email}' /><br>
-Password: <br><input id="password" type='password' name='password' /><br>
-Confirm: <br><input id="confirm" type='password' name='confirm' /><br>
+      <g:form action="handleRegistration" method="post">
 
-<input type="submit">
-</g:form>
+      <input id="email" type='text' name='email' value='${admins?.email}' placeholder="john.smith@gmail.com" /><br>
+
+      <input id="password" type='password' name='password' placeholder="Password" /><br>
+
+      <input id="confirm" type='password' name='confirm' placeholder="Confirm Password" /><br>
+
+      <input class="left" type="submit" value="Register">
+      <g:link controller="registeredUser" action="login" class="button right">Returning?</g:link>
+      </g:form>
+    </div>
+  </body>
+</html>

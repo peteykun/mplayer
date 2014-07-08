@@ -12,10 +12,7 @@ class PlayerController {
     }
 
     def index() {
-      if(!session.registeredUser.isAttached())
-        session.registeredUser.attach()
-
-      def playlists = session.registeredUser.getPlaylists()
+      def playlists = Playlist.findAllWhere(creator: session.registeredUser)
 
       [playlists: playlists]
     }

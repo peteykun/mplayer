@@ -5,10 +5,12 @@
     <asset:stylesheet src="font-awesome.css"/>
     <asset:stylesheet src="dropzone.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>MPlayer</title>
   </head>
 
   <body unselectable="yes" onselectstart="return false">
     <div id="left_panel">
+
       <ul>
         <li class="head">Library <i class="fa fa-music"></i></li>
         <li class="active item" id="all_albums">All Albums</li>
@@ -18,21 +20,24 @@
         <li class="item" id="recently_added">Recently Added</li>
       </ul>
 
+
+      <input type="text" id="search" placeholder="Search view" autocomplete="off">
+
       <ul id="playlists">
         <li class="head">Playlists <i class="fa fa-bars"></i></li>
         
         <g:each in="${playlists}">
-          <li class="playlist item" data-id="<%= it.id %>"><%= it.name %></li>
+          <li class="playlist rect item" data-id="<%= it.id %>"><%= it.name %></li>
         </g:each>
 
-        <li class="separator"></li>
-        <li class="item" id="new_playlist">New Playlist</li>
+        <li class="separator" id="new_playlist_sep"></li>
+        <li class="rect item" id="new_playlist">New Playlist</li>
       </ul>
 
       <ul>
         <li class="head">Manage <i class="fa fa-plus"></i></li>
-        <a class="list" href="${createLink(uri: '/logout')}"><li class="item">Log out</li></a>
-        <li class="item" id="upload_songs">Upload songs</li>
+        <a class="list" href="${createLink(uri: '/logout')}"><li class="rect item">Log out</li></a>
+        <li class="rect item" id="upload_songs">Upload songs</li>
       </ul>
     </div>
 
@@ -96,10 +101,19 @@
     </div>
 
     <div id="dialog_container">
-      <div class="dialog">
-        To upload songs to your library, simply drag them anywhere into the library.<br><br>
+      <div class="dialog" id="upload_dialog">
+        To upload songs to your library, simply drag them anywhere into the library.<br><br><br>
 
         <a href="#" class="dismiss button">Dismiss</a>
+      </div>
+
+      <div class="dialog" id="new_playlist_dialog">
+        Great, we'll set up a new playlist for you!<br>
+        It needs a name, though.<br><br>
+
+        <input type="text" id="playlist_name" placeholder="Playlist Name"><br><br>
+
+        <a href="#" id="create_playlist_button" class="button">Create Playlist</a>&nbsp;&nbsp;&nbsp;<a href="#" class="dismiss button" style="background-color: #b94a48;">Nervermind</a>
       </div>
     </div>
 

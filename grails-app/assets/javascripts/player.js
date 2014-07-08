@@ -11,6 +11,9 @@ var seek_bar = $('#seek_bar');
 var current_playlist = null;
 var playlist_position = null;
 
+var to_add_to_playlist = null;
+var add_what = null;
+
 /* Path */
 var baseurl = '/mplayer';
 
@@ -79,7 +82,7 @@ function loadPlaylist(playlist) {
   var songCount = 0;
 
   playlist.forEach(function(song) {
-    var html = '<li class="song' + ((songCount === 0 && player.paused) ? ' active' : '') + '" data-index="' + songCount + '"">' +
+    var html = '<li draggable="true" class="song' + ((songCount === 0 && player.paused) ? ' active' : '') + '" data-index="' + songCount + '" data-id="' + song.id + '">' +
         ((songCount === 0 && player.paused) ? '<div id="played_duration">0:00</div>' : '') +
         '<div class="title">' + song.title + '</div><br>' +
         '<div class="artist">' + song.artist + '</div>' +
@@ -107,7 +110,6 @@ function playSong(index) {
   if(!player.paused)
     play();
 
-  console.log(song);
   $("source").attr("src", song.url);
   player.load();
 
@@ -116,8 +118,6 @@ function playSong(index) {
   $($('.song')[index]).addClass('active').prepend('<div id="played_duration">0:00</div>');
 
   var target = $($('.song')[index]);
-
-  console.log($('#playlist').length);
 
   if(target.offset() !== undefined)
     $('#playlist').animate({
@@ -174,8 +174,12 @@ function fetchArtists() {
   $.get(baseurl + "/artists.json", function(data) { loadArtists(data) });
 }
 
+function fetchPlaylists() {
+  $.get(baseurl + "/playlists/index.json", function(data) { console.log(data) });
+}
+
 function fetchPlaylist(id) {
-  $.get(baseurl + "/playlists/show/" + id + ".json", function(data) { console.log(data) });
+  $.get(baseurl + "/playlists/show/" + id + ".json", function(data) { loadPlaylist(data.playlist.tracks) });
 }
 
 function loadArtists(albums) {
@@ -203,7 +207,7 @@ function loadAlbums(albums) {
   var albumCount = 0;
 
   albums.forEach(function(album) {
-    var html = '<div class="album" data-id="' + album.id + '" data-type="album">' +
+    var html = '<div draggable="true" class="album" data-id="' + album.id + '" data-type="album">' +
           '<div class="album_art">' +
             '<img src="' + album.cover_image_url + '">' +
           '</div>' +
@@ -215,6 +219,19 @@ function loadAlbums(albums) {
 
     setTimeout(function() { $(html).hide().appendTo("#albums").fadeIn(250) }, albumCount*100);
     albumCount++;
+  });
+}
+
+function filterView(search_string) {
+  $('.album').each(function() {
+    var content = $(this).children('.album_name').html().toLowerCase();
+    var search = search_string.toLowerCase();
+
+    if(content.indexOf(search) > -1) {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
   });
 }
 
@@ -239,8 +256,20 @@ $(function() {
   // Bind albums
   $('#albums').on('click', '.album', loadClickedPlaylist);
 
-  // Bind songs
+  // Bind songs (click)
   $('#playlist').on('click', '.song', playClickedSong);
+
+  // Bind songs (drag to playlist)
+  $('#playlist').on('dragstart', '.song', function(e) {
+    add_what = 'song';
+    to_add_to_playlist = $(this).data('id');
+  });
+
+  // Bind albums (drag to playlist)
+  $('#albums').on('dragstart', '.album', function(e) {
+    add_what = 'album';
+    to_add_to_playlist = $(this).data('id');
+  });
 
   var set_up = false;
 
@@ -258,6 +287,12 @@ $(function() {
       set_up = true;
     });
   });
+
+  // Disable when required
+  $('#playlist').on('mouseenter', '.song',  function() { myDropzone.disable() });
+  $('#playlist').on('mouseleave', '.song',  function() { myDropzone.enable()  });
+  $('#albums'  ).on('mouseenter', '.album', function() { myDropzone.disable() });
+  $('#albums'  ).on('mouseleave', '.album', function() { myDropzone.enable()  });
 
   var myOverlayzone = new Dropzone("#overlay", { url: baseurl + "/tracks/create", clickable: false, parallelUploads: 1});
 
@@ -300,15 +335,65 @@ $(function() {
   // Bind playlists
   $("#playlists").on('click', '.playlist', function() {
     fetchPlaylist($(this).data('id'));
-    highlight_menu_item($(this));
+    // highlight_menu_item($(this));
+  });
+
+  $("#playlists").on('dragleave', '.playlist', function() {
+    $(this).removeClass('active');
+  });
+
+  $("#playlists").on('drop', '.playlist', function(e) {
+    e.preventDefault();
+    
+    var playlist_id = $(this).data('id');
+    console.log("Track #" + to_add_to_playlist + " to be added to Playlist #" + playlist_id);
+
+    if(add_what === 'song')
+      $.post(baseurl + '/playlists/addSong', { playlist_id: playlist_id, track_id: to_add_to_playlist })
+    else
+      $.post(baseurl + '/playlists/addAlbum', { playlist_id: playlist_id, album_id: to_add_to_playlist })
+    
+    $(this).removeClass('active');
+  });
+
+  $("#playlists").on('dragover', '.playlist', function(e) {
+    $(this).addClass('active');
+    e.preventDefault();
   });
 
   // Bind the upload dialog
   $("#upload_songs").on('click', function() {
+    $("#upload_dialog").show();
     $("#dialog_container").fadeIn();
-  })
+  });
+
+  // Bind the new playlist dialog
+  $("#new_playlist").on('click', function() {
+    $("#new_playlist_dialog").show();
+    $("#new_playlist_dialog input").val('');
+    $("#dialog_container").fadeIn();
+  });
+
+  // Bind the create playlist button
+  $("#create_playlist_button").on('click', function() {
+    $.post(baseurl + "/playlists/create.json", {name: $("#playlist_name").val()}, function(data) {
+      $('<li class="playlist rect item" data-id="' + data.playlist.id + '">' + data.playlist.name + '</li>').insertBefore("#new_playlist_sep");
+    });
+
+    $("#dialog_container").fadeOut(400, function() {
+      $(".dialog").hide();
+    });
+  });
 
   $(".dismiss").on('click', function() {
-    $("#dialog_container").fadeOut();
-  })
+    $("#dialog_container").fadeOut(400, function() {
+      $(".dialog").hide();
+    });
+  });
+
+  // Bind search
+  $('#search').on('input propertychange paste', function() {
+    filterView($('#search').val());
+  });
+
 });

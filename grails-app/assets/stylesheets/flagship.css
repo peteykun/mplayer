@@ -1,0 +1,67 @@
+body {
+  background-image: url('../images/loginBack.jpg');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Roboto';
+  position: relative;
+}
+
+.alert {
+  background-color: #F2DEDE;
+  color: #b94a48;
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  margin-bottom: 15px;
+}
+
+.panel {
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 30%;
+  float: right;
+  right: 10%;
+  padding: 2%;
+  position: absolute;
+  top: 20%;
+}
+
+.panel input[type=submit], a.button {
+  display: block;
+  width: 47%;
+  margin: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 8px 8px;
+  text-decoration: none;
+  border-radius: 3px;
+  border: none;
+  font-family: 'Roboto';
+  font-size: 1.3em;
+  text-align: center;
+}
+
+input[type=submit]:hover, a.button:hover {
+  background-color: #555;
+  cursor: pointer;
+}
+
+form {
+  margin: 0;
+}
+
+.panel input[type=text], input[type=password] {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #999;
+  font-size: 1.2em;
+  font-family: 'Roboto';
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
